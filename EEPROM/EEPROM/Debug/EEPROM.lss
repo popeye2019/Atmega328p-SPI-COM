@@ -1,0 +1,396 @@
+
+EEPROM.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .data         00000000  00800100  00800100  00000246  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  1 .text         000001d2  00000000  00000000  00000074  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .bss          00000001  00800100  00800100  00000246  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  00000246  2**0
+                  CONTENTS, READONLY
+  4 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  00000278  2**2
+                  CONTENTS, READONLY
+  5 .debug_aranges 00000088  00000000  00000000  000002b8  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   00000a56  00000000  00000000  00000340  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 00000886  00000000  00000000  00000d96  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   00000527  00000000  00000000  0000161c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  000000bc  00000000  00000000  00001b44  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    000004f7  00000000  00000000  00001c00  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    00000104  00000000  00000000  000020f7  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_ranges 00000070  00000000  00000000  000021fb  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 34 00 	jmp	0x68	; 0x68 <__ctors_end>
+   4:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+   8:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+   c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  10:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  14:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  18:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  1c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  20:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  24:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  28:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  2c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  30:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  34:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  38:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  3c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  40:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  44:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  48:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  4c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  50:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  54:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  58:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  5c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  60:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  64:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+
+00000068 <__ctors_end>:
+  68:	11 24       	eor	r1, r1
+  6a:	1f be       	out	0x3f, r1	; 63
+  6c:	cf ef       	ldi	r28, 0xFF	; 255
+  6e:	d8 e0       	ldi	r29, 0x08	; 8
+  70:	de bf       	out	0x3e, r29	; 62
+  72:	cd bf       	out	0x3d, r28	; 61
+
+00000074 <__do_clear_bss>:
+  74:	21 e0       	ldi	r18, 0x01	; 1
+  76:	a0 e0       	ldi	r26, 0x00	; 0
+  78:	b1 e0       	ldi	r27, 0x01	; 1
+  7a:	01 c0       	rjmp	.+2      	; 0x7e <.do_clear_bss_start>
+
+0000007c <.do_clear_bss_loop>:
+  7c:	1d 92       	st	X+, r1
+
+0000007e <.do_clear_bss_start>:
+  7e:	a1 30       	cpi	r26, 0x01	; 1
+  80:	b2 07       	cpc	r27, r18
+  82:	e1 f7       	brne	.-8      	; 0x7c <.do_clear_bss_loop>
+  84:	0e 94 a2 00 	call	0x144	; 0x144 <main>
+  88:	0c 94 e7 00 	jmp	0x1ce	; 0x1ce <_exit>
+
+0000008c <__bad_interrupt>:
+  8c:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000090 <_Z15spi_master_initv>:
+#include <avr/io.h>
+
+
+void spi_master_init(void)
+{
+	DDRB |= (1 << DDB3) | (1 << DDB5) | (1 << DDB2); // Set MOSI, SCK and SS as outputs
+  90:	84 b1       	in	r24, 0x04	; 4
+  92:	8c 62       	ori	r24, 0x2C	; 44
+  94:	84 b9       	out	0x04, r24	; 4
+	DDRB &= ~(1 << DDB4); // Set MISO as input
+  96:	84 b1       	in	r24, 0x04	; 4
+  98:	8f 7e       	andi	r24, 0xEF	; 239
+  9a:	84 b9       	out	0x04, r24	; 4
+
+	SPCR |= (1 << MSTR); // Set SPI mode as master
+  9c:	8c b5       	in	r24, 0x2c	; 44
+  9e:	80 61       	ori	r24, 0x10	; 16
+  a0:	8c bd       	out	0x2c, r24	; 44
+	SPCR |= (1 << SPR0) | (1 << SPR1);
+  a2:	8c b5       	in	r24, 0x2c	; 44
+  a4:	83 60       	ori	r24, 0x03	; 3
+  a6:	8c bd       	out	0x2c, r24	; 44
+	SPCR |= (1 << CPOL) | (1 << CPHA); // Set clock polarity and phase
+  a8:	8c b5       	in	r24, 0x2c	; 44
+  aa:	8c 60       	ori	r24, 0x0C	; 12
+  ac:	8c bd       	out	0x2c, r24	; 44
+
+	SPCR |= (1 << SPE); // Enable SPI
+  ae:	8c b5       	in	r24, 0x2c	; 44
+  b0:	80 64       	ori	r24, 0x40	; 64
+  b2:	8c bd       	out	0x2c, r24	; 44
+	PORTB &= ~(1 << PB2); //chip select et envoie 0
+  b4:	85 b1       	in	r24, 0x05	; 5
+  b6:	8b 7f       	andi	r24, 0xFB	; 251
+  b8:	85 b9       	out	0x05, r24	; 5
+	SPDR = 0b00000000;
+  ba:	1e bc       	out	0x2e, r1	; 46
+	while (!(SPSR & (1 << SPIF)));
+  bc:	0d b4       	in	r0, 0x2d	; 45
+  be:	07 fe       	sbrs	r0, 7
+  c0:	fd cf       	rjmp	.-6      	; 0xbc <_Z15spi_master_initv+0x2c>
+	PORTB |= (1 << PB2);
+  c2:	85 b1       	in	r24, 0x05	; 5
+  c4:	84 60       	ori	r24, 0x04	; 4
+  c6:	85 b9       	out	0x05, r24	; 5
+  c8:	08 95       	ret
+
+000000ca <_Z12EEPROM_writejh>:
+}
+
+void EEPROM_write(uint16_t address, uint8_t data)
+{
+
+	 PORTB &= ~(1 << PB2); // selection de l'esclave
+  ca:	25 b1       	in	r18, 0x05	; 5
+  cc:	2b 7f       	andi	r18, 0xFB	; 251
+  ce:	25 b9       	out	0x05, r18	; 5
+	 SPDR = 0b00000110; // = 6  = WREN autorise à ecrire
+  d0:	26 e0       	ldi	r18, 0x06	; 6
+  d2:	2e bd       	out	0x2e, r18	; 46
+	 
+	 while (!(SPSR & (1 << SPIF)));
+  d4:	0d b4       	in	r0, 0x2d	; 45
+  d6:	07 fe       	sbrs	r0, 7
+  d8:	fd cf       	rjmp	.-6      	; 0xd4 <_Z12EEPROM_writejh+0xa>
+	 PORTB |= (1 << PB2);
+  da:	25 b1       	in	r18, 0x05	; 5
+  dc:	24 60       	ori	r18, 0x04	; 4
+  de:	25 b9       	out	0x05, r18	; 5
+	 PORTB &= ~(1 << PB2);
+  e0:	25 b1       	in	r18, 0x05	; 5
+  e2:	2b 7f       	andi	r18, 0xFB	; 251
+  e4:	25 b9       	out	0x05, r18	; 5
+	 SPDR = 0b00000010;
+  e6:	22 e0       	ldi	r18, 0x02	; 2
+  e8:	2e bd       	out	0x2e, r18	; 46
+	 
+	 while (!(SPSR & (1 << SPIF)));
+  ea:	0d b4       	in	r0, 0x2d	; 45
+  ec:	07 fe       	sbrs	r0, 7
+  ee:	fd cf       	rjmp	.-6      	; 0xea <_Z12EEPROM_writejh+0x20>
+	 // Envoyer l'adresse de début d'écriture
+	 SPDR = (uint8_t)(address >> 8);
+  f0:	9e bd       	out	0x2e, r25	; 46
+	 
+	 while (!(SPSR & (1 << SPIF)));
+  f2:	0d b4       	in	r0, 0x2d	; 45
+  f4:	07 fe       	sbrs	r0, 7
+  f6:	fd cf       	rjmp	.-6      	; 0xf2 <_Z12EEPROM_writejh+0x28>
+	 SPDR = (uint8_t)(address);
+  f8:	8e bd       	out	0x2e, r24	; 46
+	 
+	 while (!(SPSR & (1 << SPIF)));
+  fa:	0d b4       	in	r0, 0x2d	; 45
+  fc:	07 fe       	sbrs	r0, 7
+  fe:	fd cf       	rjmp	.-6      	; 0xfa <_Z12EEPROM_writejh+0x30>
+	 // Envoyer les données à écrire
+	 SPDR = data;
+ 100:	6e bd       	out	0x2e, r22	; 46
+	 
+	 while (!(SPSR & (1 << SPIF)));
+ 102:	0d b4       	in	r0, 0x2d	; 45
+ 104:	07 fe       	sbrs	r0, 7
+ 106:	fd cf       	rjmp	.-6      	; 0x102 <_Z12EEPROM_writejh+0x38>
+	 PORTB |= (1 << PB2);
+ 108:	85 b1       	in	r24, 0x05	; 5
+ 10a:	84 60       	ori	r24, 0x04	; 4
+ 10c:	85 b9       	out	0x05, r24	; 5
+ 10e:	08 95       	ret
+
+00000110 <_Z11EEPROM_readj>:
+}
+
+uint8_t EEPROM_read(uint16_t address)
+{
+	uint8_t data;
+	PORTB &= ~(1 << PB2); // SS = 0 ;
+ 110:	25 b1       	in	r18, 0x05	; 5
+ 112:	2b 7f       	andi	r18, 0xFB	; 251
+ 114:	25 b9       	out	0x05, r18	; 5
+
+	// Envoyer l'instruction de lecture
+	SPDR = 0b00000011;
+ 116:	23 e0       	ldi	r18, 0x03	; 3
+ 118:	2e bd       	out	0x2e, r18	; 46
+
+	// Attendre que la transmission soit terminée
+	while (!(SPSR & (1 << SPIF)));
+ 11a:	0d b4       	in	r0, 0x2d	; 45
+ 11c:	07 fe       	sbrs	r0, 7
+ 11e:	fd cf       	rjmp	.-6      	; 0x11a <_Z11EEPROM_readj+0xa>
+	// Envoyer l'adresse de début de lecture
+	SPDR = (uint8_t)(address >> 8);
+ 120:	9e bd       	out	0x2e, r25	; 46
+	
+	while (!(SPSR & (1 << SPIF)));
+ 122:	0d b4       	in	r0, 0x2d	; 45
+ 124:	07 fe       	sbrs	r0, 7
+ 126:	fd cf       	rjmp	.-6      	; 0x122 <_Z11EEPROM_readj+0x12>
+	SPDR = (uint8_t)(address);
+ 128:	8e bd       	out	0x2e, r24	; 46
+	
+	while (!(SPSR & (1 << SPIF)));
+ 12a:	0d b4       	in	r0, 0x2d	; 45
+ 12c:	07 fe       	sbrs	r0, 7
+ 12e:	fd cf       	rjmp	.-6      	; 0x12a <_Z11EEPROM_readj+0x1a>
+	// Lire les données depuis l'EEPROM
+	SPDR = 0xFF; // Envoyer une valeur arbitraire pour déclencher la lecture
+ 130:	8f ef       	ldi	r24, 0xFF	; 255
+ 132:	8e bd       	out	0x2e, r24	; 46
+	
+	while (!(SPSR & (1 << SPIF)));
+ 134:	0d b4       	in	r0, 0x2d	; 45
+ 136:	07 fe       	sbrs	r0, 7
+ 138:	fd cf       	rjmp	.-6      	; 0x134 <_Z11EEPROM_readj+0x24>
+	data = SPDR;
+ 13a:	8e b5       	in	r24, 0x2e	; 46
+
+	PORTB |= (1 << PB2); // SS = 1 ;
+ 13c:	95 b1       	in	r25, 0x05	; 5
+ 13e:	94 60       	ori	r25, 0x04	; 4
+ 140:	95 b9       	out	0x05, r25	; 5
+
+	return data;
+ 142:	08 95       	ret
+
+00000144 <main>:
+int main(void)
+{
+	
+	char lettre = 97 ;
+	int cpt = 0 ;
+	spi_master_init();
+ 144:	0e 94 48 00 	call	0x90	; 0x90 <_Z15spi_master_initv>
+	USART_Init();
+ 148:	0e 94 d1 00 	call	0x1a2	; 0x1a2 <_Z10USART_Initv>
+	
+	//EEPROM_write(404,70);
+	
+
+// ecrire eeprom
+     for (uint16_t i = 0; i < 26 ;  i++)
+ 14c:	c0 e0       	ldi	r28, 0x00	; 0
+ 14e:	d0 e0       	ldi	r29, 0x00	; 0
+
+int main(void)
+{
+	
+	char lettre = 97 ;
+	int cpt = 0 ;
+ 150:	00 e0       	ldi	r16, 0x00	; 0
+ 152:	10 e0       	ldi	r17, 0x00	; 0
+	
+	//EEPROM_write(404,70);
+	
+
+// ecrire eeprom
+     for (uint16_t i = 0; i < 26 ;  i++)
+ 154:	ca 31       	cpi	r28, 0x1A	; 26
+ 156:	d1 05       	cpc	r29, r1
+ 158:	90 f4       	brcc	.+36     	; 0x17e <main+0x3a>
+     {
+		 
+		
+			EEPROM_write(i,lettre+cpt);
+ 15a:	61 e6       	ldi	r22, 0x61	; 97
+ 15c:	60 0f       	add	r22, r16
+ 15e:	ce 01       	movw	r24, r28
+ 160:	0e 94 65 00 	call	0xca	; 0xca <_Z12EEPROM_writejh>
+			cpt = cpt + 1;
+ 164:	0f 5f       	subi	r16, 0xFF	; 255
+ 166:	1f 4f       	sbci	r17, 0xFF	; 255
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 168:	2f ef       	ldi	r18, 0xFF	; 255
+ 16a:	80 e7       	ldi	r24, 0x70	; 112
+ 16c:	92 e0       	ldi	r25, 0x02	; 2
+ 16e:	21 50       	subi	r18, 0x01	; 1
+ 170:	80 40       	sbci	r24, 0x00	; 0
+ 172:	90 40       	sbci	r25, 0x00	; 0
+ 174:	e1 f7       	brne	.-8      	; 0x16e <main+0x2a>
+ 176:	00 c0       	rjmp	.+0      	; 0x178 <main+0x34>
+ 178:	00 00       	nop
+	
+	//EEPROM_write(404,70);
+	
+
+// ecrire eeprom
+     for (uint16_t i = 0; i < 26 ;  i++)
+ 17a:	21 96       	adiw	r28, 0x01	; 1
+ 17c:	eb cf       	rjmp	.-42     	; 0x154 <main+0x10>
+ 17e:	c0 e0       	ldi	r28, 0x00	; 0
+ 180:	d0 e0       	ldi	r29, 0x00	; 0
+			 _delay_ms(50);
+	     
+     }
+
+     // Lire eprom
+     for (uint16_t i = 0 ; i < 27; i++)
+ 182:	cb 31       	cpi	r28, 0x1B	; 27
+ 184:	d1 05       	cpc	r29, r1
+ 186:	60 f4       	brcc	.+24     	; 0x1a0 <main+0x5c>
+     {
+		       
+		       data = EEPROM_read(i);
+ 188:	ce 01       	movw	r24, r28
+ 18a:	0e 94 88 00 	call	0x110	; 0x110 <_Z11EEPROM_readj>
+ 18e:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <__DATA_REGION_ORIGIN__>
+		       
+		    
+		       USART_Transmit(data);
+ 192:	0e 94 e0 00 	call	0x1c0	; 0x1c0 <_Z14USART_Transmith>
+			   USART_Transmit('_');
+ 196:	8f e5       	ldi	r24, 0x5F	; 95
+ 198:	0e 94 e0 00 	call	0x1c0	; 0x1c0 <_Z14USART_Transmith>
+			 _delay_ms(50);
+	     
+     }
+
+     // Lire eprom
+     for (uint16_t i = 0 ; i < 27; i++)
+ 19c:	21 96       	adiw	r28, 0x01	; 1
+ 19e:	f1 cf       	rjmp	.-30     	; 0x182 <main+0x3e>
+ 1a0:	ff cf       	rjmp	.-2      	; 0x1a0 <main+0x5c>
+
+000001a2 <_Z10USART_Initv>:
+{
+	
+	while ( !(UCSR0A & (1<<RXC0)) );
+	
+	return UDR0;
+}
+ 1a2:	83 e3       	ldi	r24, 0x33	; 51
+ 1a4:	90 e0       	ldi	r25, 0x00	; 0
+ 1a6:	90 93 c5 00 	sts	0x00C5, r25	; 0x8000c5 <__TEXT_REGION_LENGTH__+0x7f80c5>
+ 1aa:	80 93 c4 00 	sts	0x00C4, r24	; 0x8000c4 <__TEXT_REGION_LENGTH__+0x7f80c4>
+ 1ae:	10 92 c0 00 	sts	0x00C0, r1	; 0x8000c0 <__TEXT_REGION_LENGTH__+0x7f80c0>
+ 1b2:	88 e9       	ldi	r24, 0x98	; 152
+ 1b4:	80 93 c1 00 	sts	0x00C1, r24	; 0x8000c1 <__TEXT_REGION_LENGTH__+0x7f80c1>
+ 1b8:	8e e0       	ldi	r24, 0x0E	; 14
+ 1ba:	80 93 c2 00 	sts	0x00C2, r24	; 0x8000c2 <__TEXT_REGION_LENGTH__+0x7f80c2>
+ 1be:	08 95       	ret
+
+000001c0 <_Z14USART_Transmith>:
+
+/****************On crée une fonction pour transmettre des caracteres****************/
+void USART_Transmit( unsigned char data )
+{
+	
+	while ( !(UCSR0A & (1<<UDRE0)) );
+ 1c0:	90 91 c0 00 	lds	r25, 0x00C0	; 0x8000c0 <__TEXT_REGION_LENGTH__+0x7f80c0>
+ 1c4:	95 ff       	sbrs	r25, 5
+ 1c6:	fc cf       	rjmp	.-8      	; 0x1c0 <_Z14USART_Transmith>
+	UDR0 = data;
+ 1c8:	80 93 c6 00 	sts	0x00C6, r24	; 0x8000c6 <__TEXT_REGION_LENGTH__+0x7f80c6>
+ 1cc:	08 95       	ret
+
+000001ce <_exit>:
+ 1ce:	f8 94       	cli
+
+000001d0 <__stop_program>:
+ 1d0:	ff cf       	rjmp	.-2      	; 0x1d0 <__stop_program>
